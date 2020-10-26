@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class jblWords extends javax.swing.JFrame {
     DefaultTableModel model;
+    private int id ;
     public jblWords() {
         FileOperations fileOperations = new FileOperations();
         initComponents();
@@ -37,6 +39,14 @@ public class jblWords extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblGetWordEng = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtSetWordTr = new javax.swing.JTextField();
+        btnGetRandomEng = new javax.swing.JButton();
+        btnCheckEngToTr = new javax.swing.JButton();
+        btnGetAnswer = new javax.swing.JButton();
+        lblResult = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -44,15 +54,94 @@ public class jblWords extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel1.setText("Eng:");
+
+        lblGetWordEng.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel3.setText("TR");
+
+        txtSetWordTr.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        txtSetWordTr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSetWordTrActionPerformed(evt);
+            }
+        });
+
+        btnGetRandomEng.setText("Get Random Word");
+        btnGetRandomEng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGetRandomEngActionPerformed(evt);
+            }
+        });
+
+        btnCheckEngToTr.setText("Check ");
+        btnCheckEngToTr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckEngToTrActionPerformed(evt);
+            }
+        });
+
+        btnGetAnswer.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnGetAnswer.setText("?");
+        btnGetAnswer.setLocation(new java.awt.Point(-32468, -32667));
+        btnGetAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGetAnswerActionPerformed(evt);
+            }
+        });
+
+        lblResult.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 713, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblGetWordEng, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSetWordTr)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGetRandomEng)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCheckEngToTr)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGetAnswer)))
+                .addGap(64, 64, 64)
+                .addComponent(lblResult)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblGetWordEng, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnGetRandomEng)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtSetWordTr)
+                                .addComponent(btnCheckEngToTr)
+                                .addComponent(btnGetAnswer))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ENG to TR", jPanel1);
@@ -113,6 +202,43 @@ public class jblWords extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCheckEngToTrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckEngToTrActionPerformed
+        FileOperations fileOperations = new FileOperations();
+        ArrayList<Word> words ;
+        words = fileOperations.getFile();
+        String currentWord = words.get(id).getTr().toLowerCase();
+        System.out.println(currentWord);
+        String typedWord = txtSetWordTr.getText().toLowerCase();
+        System.out.println(typedWord);
+        if(currentWord.equals(typedWord)){
+            lblResult.setText("TRUE");
+        }else{
+             lblResult.setText("FALSE");
+        }
+    }//GEN-LAST:event_btnCheckEngToTrActionPerformed
+
+    private void txtSetWordTrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSetWordTrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSetWordTrActionPerformed
+
+    private void btnGetRandomEngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetRandomEngActionPerformed
+       FileOperations fileOperations = new FileOperations();
+       ArrayList<Word> words ;
+       words = fileOperations.getFile();
+       int size = words.size();
+       Random random = new Random();
+       id = random.nextInt(size);
+       lblGetWordEng.setText(words.get(id).getEng());
+    }//GEN-LAST:event_btnGetRandomEngActionPerformed
+
+    private void btnGetAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetAnswerActionPerformed
+       FileOperations fileOperations = new FileOperations();
+       ArrayList<Word> words ;
+       words = fileOperations.getFile();
+       String translatedWord = words.get(id).getTr().toLowerCase();
+       lblResult.setText(translatedWord);
+    }//GEN-LAST:event_btnGetAnswerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -149,11 +275,19 @@ public class jblWords extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCheckEngToTr;
+    private javax.swing.JButton btnGetAnswer;
+    private javax.swing.JButton btnGetRandomEng;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblGetWordEng;
+    private javax.swing.JLabel lblResult;
     private javax.swing.JTable tblWordList;
+    private javax.swing.JTextField txtSetWordTr;
     // End of variables declaration//GEN-END:variables
 }
