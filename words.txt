@@ -1,0 +1,23 @@
+id , ENG , TR 
+1 / - scissors = Makas2
+2 tissue = mendil
+3 identity card = Kimlik
+4 diary = günlük
+5 wallet = erkek cüzdanı
+6 glasses = gözlük
+7 Dictionary = sözlük
+8 Sandwich = sandiviç
+9 Frightened / scared= korkmuş
+10 worried = endişeli
+11 Cheer up = neşelen
+12 Journey = yolculuk
+13 queues = kuyruk
+14 grass = çim
+15 foreign = Dış
+16 the clock tower = saat kulesi
+17 a flight attendant = uçuş görevlisi ( Hostes)
+18 a guide = rehber ( şehir rehberi)
+19 a vet = veteriner
+20 a waiter / a waitress = garson
+21 Decide : karar vemek
+22 Near : yakın
