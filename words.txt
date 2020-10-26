@@ -4,3 +4,21 @@
 4/diary/günlük
 5/wallet/erkek cüzdanı
 6/glasses/gözlük
+7/Dictionary/sözlük
+8/Sandwich/sandiviç
+9/Frightened/korkmuş
+10/worried/endişeli
+11/Cheer up/neşelen
+12/Journey/yolculuk
+13/queues/kuyruk
+14/grass/çim
+15/foreign/Dış
+16/the clock tower/saat kulesi
+17/flight attendant/ uçuş görevlisi
+18/guide/rehber
+19/vet/veteriner
+20/waiter/erkek garson 
+21/Decide/karar vemek
+22/Near/yakın
+23/scared/korkmuş
+24/waitress/kadın garson
