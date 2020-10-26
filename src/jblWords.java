@@ -1,6 +1,9 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -18,6 +21,11 @@ public class jblWords extends javax.swing.JFrame {
     private int id ;
     public jblWords() {
         FileOperations fileOperations = new FileOperations();
+        try {
+            fileOperations.createFile();
+        } catch (IOException ex) {
+            Logger.getLogger(jblWords.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         model = (DefaultTableModel)tblWordList.getModel();
         model.setRowCount(0);

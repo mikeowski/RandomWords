@@ -3,13 +3,19 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FileOperations {
+    public void createFile() throws IOException{
+    File file = new File("words.txt");
+    file.createNewFile();
+    }
     public ArrayList<Word> getFile(){
         File file = new File("words.txt");
+        
         ArrayList<Word> wordList = new ArrayList<Word>();
         try {
             BufferedReader bReader = new BufferedReader(new FileReader(file));
