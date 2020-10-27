@@ -17,8 +17,9 @@
 17/flight attendant/ uçuş görevlisi
 18/guide/rehber
 19/vet/veteriner
-20/waiter/erkek garson 
+20/waiter/erkek garson
 21/Decide/karar vemek
 22/Near/yakın
 23/scared/korkmuş
 24/waitress/kadın garson
+25/Nephew/Erkek Yiğen

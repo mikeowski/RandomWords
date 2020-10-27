@@ -1,4 +1,6 @@
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,16 +22,21 @@ public class jblWords extends javax.swing.JFrame {
     DefaultTableModel model;
     private int id ;
     public jblWords() {
-        FileOperations fileOperations = new FileOperations();
+        initComponents();
+        updateTable();
+    }
+    public void updateTable(){
+    FileOperations fileOperations = new FileOperations();
         try {
             fileOperations.createFile();
         } catch (IOException ex) {
             Logger.getLogger(jblWords.class.getName()).log(Level.SEVERE, null, ex);
         }
-        initComponents();
+        
         model = (DefaultTableModel)tblWordList.getModel();
-        model.setRowCount(0);
+        
         ArrayList<Word> wordList = fileOperations.getFile();
+        model.setRowCount(0);
         for(Word word : wordList){
         Object[] j = {word.getId(),word.getEng(),word.getTr()};
         model.addRow(j);
@@ -67,6 +74,14 @@ public class jblWords extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblWordList = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtAddWordEng = new javax.swing.JTextField();
+        txtAddWordTr = new javax.swing.JTextField();
+        btnAddWord = new javax.swing.JButton();
+        lblİsNew = new javax.swing.JLabel();
+        btnUpdateWord = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,7 +149,7 @@ public class jblWords extends javax.swing.JFrame {
                         .addComponent(btnGetAnswer)))
                 .addGap(64, 64, 64)
                 .addComponent(lblResult)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +172,7 @@ public class jblWords extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ENG to TR", jPanel1);
@@ -226,7 +241,7 @@ public class jblWords extends javax.swing.JFrame {
                         .addComponent(btnGetAnswerTr)))
                 .addGap(64, 64, 64)
                 .addComponent(lblResult1)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +264,7 @@ public class jblWords extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(lblResult1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("TR to ENG", jPanel2);
@@ -262,22 +277,88 @@ public class jblWords extends javax.swing.JFrame {
                 "id", "ENG", "TR"
             }
         ));
+        tblWordList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblWordListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblWordList);
+
+        jLabel1.setText("Add Word");
+
+        jLabel2.setText("Eng : ");
+
+        jLabel3.setText("Tr : ");
+
+        btnAddWord.setText("Add");
+        btnAddWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddWordActionPerformed(evt);
+            }
+        });
+
+        lblİsNew.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+
+        btnUpdateWord.setText("update");
+        btnUpdateWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateWordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAddWordEng)
+                                    .addComponent(txtAddWordTr)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btnAddWord)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdateWord)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblİsNew, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 17, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtAddWordEng, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtAddWordTr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddWord)
+                    .addComponent(lblİsNew)
+                    .addComponent(btnUpdateWord))
+                .addGap(0, 241, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -291,7 +372,7 @@ public class jblWords extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
         );
 
         pack();
@@ -371,6 +452,101 @@ public class jblWords extends javax.swing.JFrame {
        lblResult1.setText(translatedWord);
     }//GEN-LAST:event_btnGetAnswerTrActionPerformed
 
+    private void btnAddWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddWordActionPerformed
+        FileOperations fileOperations = new FileOperations();
+       
+        ArrayList<Word> words; 
+        words = fileOperations.getFile();
+        boolean isNew = true;
+        for(Word word : words){
+            if(word.getEng().equals(txtAddWordEng.getText()) || (word.getEng()+" ").equals(txtAddWordEng.getText()) || (word.getEng()+"  ").equals(txtAddWordEng.getText())){
+            isNew= false;
+            break;
+            }
+        
+        }
+      
+        try {
+          
+            BufferedWriter bWriter = new BufferedWriter(new FileWriter("words.txt"));
+           // System.out.println(words.size());
+           for(int i = 0 ; i<words.size()+1; i++){
+               if(i!=words.size()){
+                    bWriter.write((i+1)+"/"+words.get(i).getEng()+"/"+words.get(i).getTr()+"\n");
+                   // System.out.println(i+" Yazıldı");
+               }else if(!txtAddWordEng.getText().isEmpty() && !txtAddWordTr.getText().isEmpty() && isNew) {
+                   bWriter.write((i+1)+"/"+txtAddWordEng.getText()+"/"+txtAddWordTr.getText());
+                   txtAddWordEng.setText("");
+                   txtAddWordTr.setText("");
+                   lblİsNew.setText("Word added to list");
+               }else if(!isNew){
+                   lblİsNew.setText("Already have!");
+                   txtAddWordEng.setText("");
+                   txtAddWordTr.setText("");
+               }  else break;
+           }
+            
+            bWriter.close();
+            updateTable();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(jblWords.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btnAddWordActionPerformed
+
+    private void btnUpdateWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateWordActionPerformed
+       /* model = (DefaultTableModel) tblWordList.getModel();
+        int keyPressed = tblWordList.getSelectedRow();
+        int id =(int) model.getValueAt(keyPressed,0);
+        FileOperations fileOperations = new FileOperations();
+        ArrayList<Word> words ;
+        words = fileOperations.getFile();
+         boolean isNew = true;
+        for(Word word : words){
+            if(word.getEng().equals(txtAddWordEng.getText()) || (word.getEng()+" ").equals(txtAddWordEng.getText()) || (word.getEng()+"  ").equals(txtAddWordEng.getText())){
+            isNew= false;
+            break;
+            }
+        
+        }
+        try {
+            BufferedWriter bWriter = new BufferedWriter(new FileWriter("word.txt"));
+            for(int i = 0 ; i < words.size() ; i++){
+                   if((i+1)!=id){
+                       bWriter.write((i+1)+"/"+words.get(i).getEng()+"/"+words.get(i).getTr()+"\n");
+                   }else if(!txtAddWordEng.getText().isEmpty() && !txtAddWordTr.getText().isEmpty() && isNew){
+                        bWriter.write((i+1)+"/"+txtAddWordEng.getText()+"/"+txtAddWordTr.getText());
+                        txtAddWordEng.setText("");
+                        txtAddWordTr.setText("");
+                        lblİsNew.setText("Word is update!");
+                   }else if(!isNew){
+                   lblİsNew.setText("Already have!");
+                   txtAddWordEng.setText("");
+                   txtAddWordTr.setText("");
+                       
+                   }
+                   
+                  
+            
+            }
+            updateTable();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(jblWords.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+    }//GEN-LAST:event_btnUpdateWordActionPerformed
+
+    private void tblWordListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblWordListMouseClicked
+        model = (DefaultTableModel) tblWordList.getModel();
+        int keyPressed = tblWordList.getSelectedRow();
+        txtAddWordEng.setText(model.getValueAt(keyPressed,1).toString());
+        txtAddWordTr.setText(model.getValueAt(keyPressed,2).toString());
+        
+    }//GEN-LAST:event_tblWordListMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -407,12 +583,17 @@ public class jblWords extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddWord;
     private javax.swing.JButton btnCheckEngToTr;
     private javax.swing.JButton btnCheckTrToEng;
     private javax.swing.JButton btnGetAnswer;
     private javax.swing.JButton btnGetAnswerTr;
     private javax.swing.JButton btnGetRandomEng;
     private javax.swing.JButton btnGetRandomTr;
+    private javax.swing.JButton btnUpdateWord;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -426,7 +607,10 @@ public class jblWords extends javax.swing.JFrame {
     private javax.swing.JLabel lblResult1;
     private javax.swing.JLabel lblTR1;
     private javax.swing.JLabel lblTR2;
+    private javax.swing.JLabel lblİsNew;
     private javax.swing.JTable tblWordList;
+    private javax.swing.JTextField txtAddWordEng;
+    private javax.swing.JTextField txtAddWordTr;
     private javax.swing.JTextField txtSetWordEng;
     private javax.swing.JTextField txtSetWordTr;
     // End of variables declaration//GEN-END:variables

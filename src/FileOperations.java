@@ -27,11 +27,12 @@ public class FileOperations {
                 
             }
 
-
+               
 
         } catch (Exception ex) {
             Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return wordList;
     }   
 }
