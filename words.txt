@@ -24,3 +24,4 @@
 24/waitress/kadın garson
 25/Nephew/Erkek Yiğen
 26/Niece/Kız Yiğen
+27/Hospital/hastane
