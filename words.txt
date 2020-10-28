@@ -1,5 +1,5 @@
 1/scissors/Makas
-2/tissue/mendil
+2/tissue/Mendil
 3/identity card/Kimlik
 4/diary/günlük
 5/wallet/erkek cüzdanı

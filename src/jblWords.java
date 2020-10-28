@@ -497,45 +497,46 @@ public class jblWords extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddWordActionPerformed
 
     private void btnUpdateWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateWordActionPerformed
-       /* model = (DefaultTableModel) tblWordList.getModel();
-        int keyPressed = tblWordList.getSelectedRow();
-        int id =(int) model.getValueAt(keyPressed,0);
-        FileOperations fileOperations = new FileOperations();
-        ArrayList<Word> words ;
-        words = fileOperations.getFile();
-         boolean isNew = true;
+       String engWord= txtAddWordEng.getText();
+       String trWord = txtAddWordTr.getText();
+       model = (DefaultTableModel) tblWordList.getModel();
+       int keyPressed = tblWordList.getSelectedRow();
+       FileOperations fileOpr = new FileOperations();
+       ArrayList<Word> words = fileOpr.getFile();
+       System.out.println(keyPressed);
+       boolean isNew = true;
         for(Word word : words){
-            if(word.getEng().equals(txtAddWordEng.getText()) || (word.getEng()+" ").equals(txtAddWordEng.getText()) || (word.getEng()+"  ").equals(txtAddWordEng.getText())){
+            if((word.getEng().equals(txtAddWordEng.getText()) || (word.getEng()+" ").equals(txtAddWordEng.getText()) || (word.getEng()+"  ").equals(txtAddWordEng.getText())) &&  word.getTr().equals(txtAddWordTr.getText()) || (word.getTr()+" ").equals(txtAddWordTr.getText()) || (word.getTr()+"  ").equals(txtAddWordTr.getText())){
             isNew= false;
             break;
             }
         
         }
-        try {
-            BufferedWriter bWriter = new BufferedWriter(new FileWriter("word.txt"));
-            for(int i = 0 ; i < words.size() ; i++){
-                   if((i+1)!=id){
-                       bWriter.write((i+1)+"/"+words.get(i).getEng()+"/"+words.get(i).getTr()+"\n");
-                   }else if(!txtAddWordEng.getText().isEmpty() && !txtAddWordTr.getText().isEmpty() && isNew){
-                        bWriter.write((i+1)+"/"+txtAddWordEng.getText()+"/"+txtAddWordTr.getText());
-                        txtAddWordEng.setText("");
-                        txtAddWordTr.setText("");
-                        lblİsNew.setText("Word is update!");
-                   }else if(!isNew){
-                   lblİsNew.setText("Already have!");
-                   txtAddWordEng.setText("");
-                   txtAddWordTr.setText("");
-                       
-                   }
-                   
-                  
-            
-            }
-            updateTable();
-            
+       try {
+            BufferedWriter bWriter = new BufferedWriter(new FileWriter("words.txt"));
+            for(int i = 0; i < words.size(); i++){
+                
+                if(i != keyPressed){
+                    bWriter.write(words.get(i).getId()+"/"+words.get(i).getEng()+"/"+words.get(i).getTr()+"\n");
+                }
+                
+                else if((i)==keyPressed && isNew && !txtAddWordEng.getText().isBlank() && !txtAddWordTr.getText().isBlank()){
+                bWriter.write((keyPressed+1)+ "/"+txtAddWordEng.getText()+"/"+txtAddWordTr.getText()+"\n");
+                txtAddWordEng.setText("");
+                txtAddWordTr.setText("");
+                    lblİsNew.setText("Word Update");
+                }else if(!isNew && (i)==keyPressed){
+                    bWriter.write(words.get(i).getId()+"/"+words.get(i).getEng()+"/"+words.get(i).getTr()+"\n");
+                    lblİsNew.setText("Already Have!");
+                }
+            }   
+          bWriter.close();
+          updateTable();
+                
+                
         } catch (IOException ex) {
             Logger.getLogger(jblWords.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
 
     }//GEN-LAST:event_btnUpdateWordActionPerformed
 
