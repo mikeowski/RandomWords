@@ -26,7 +26,7 @@ public class jblWords extends javax.swing.JFrame {
         updateTable();
     }
     public void updateTable(){
-    FileOperations fileOperations = new FileOperations();
+        FileOperations fileOperations = new FileOperations();
         try {
             fileOperations.createFile();
         } catch (IOException ex) {
