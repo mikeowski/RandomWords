@@ -24,6 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f66a9ffc-a9e0-468e-9008-98434dcb4e4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,5 +100,9 @@
       <screen x="0" y="23" width="1680" height="982" />
     </state>
     <state x="341" y="152" key="SettingsEditor/0.23.1680.982@0.23.1680.982" timestamp="1604746298606" />
+    <state x="439" y="87" key="new project wizard" timestamp="1608041620009">
+      <screen x="0" y="25" width="1680" height="975" />
+    </state>
+    <state x="439" y="87" key="new project wizard/0.25.1680.975@0.25.1680.975" timestamp="1608041620009" />
   </component>
 </project>
